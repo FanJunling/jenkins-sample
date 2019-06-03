@@ -1,9 +1,9 @@
-FROM golang:1.12-alpine
+FROM golang:1.10.4-alpine
 
 ADD . /go/src/app
 
 WORKDIR /go/src/app
 
-RUN GOOS=linux GOARCH=386 go build -v -o /go/src/app/jenkins-app
+RUN  go build -v -o /go/src/app/jenkins-app
 
 CMD ["./jenkins-app"]
