@@ -12,3 +12,19 @@ spec:
       - image: cathyfan/jenkins-demo:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         name: jenkins-demo
+        env:
+        - name: branch
+          value: <BRANCH_NAME>
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: demo
+spec:
+   selector:
+     app: jenkins-demo
+   type: NodePort
+   ports:
+   - port: 18888
+     targetPort: 18888
+     nodePort: 31888
